@@ -1,5 +1,6 @@
 import React from "react";
 import { FaFacebookF, FaInstagram, FaTwitter } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -20,9 +21,15 @@ const Footer = () => {
             Join us on social media
           </p>
           <div className="flex justify-center gap-6 text-3xl">
-            <FaFacebookF />
-            <FaInstagram />
-            <FaTwitter />
+            <Link to="/">
+              <FaFacebookF />
+            </Link>
+            <Link to="/">
+              <FaInstagram />
+            </Link>
+            <Link to="/">
+              <FaTwitter />
+            </Link>
           </div>
         </div>
       </div>
