@@ -9,7 +9,11 @@ export default {
     flowbite.content()
   ],
   theme: {
-    extend: {},
+    extend: {
+      textUnderlineOffset: {
+        5: '16px',
+      }
+    },
   },
   plugins: [
     flowbite.plugin(),
