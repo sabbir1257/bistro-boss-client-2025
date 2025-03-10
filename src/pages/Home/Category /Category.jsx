@@ -22,7 +22,7 @@ const categories = [
 
 const Category = () => {
   return (
-    <section>
+    <section className="p-4">
       <SectionTitle heading="ORDER ONLINE" subHeading="---From 11:00am to 10:00pm---" />
 
       <div className="py-4 md:pb-10">
@@ -37,7 +37,7 @@ const Category = () => {
             <SwiperSlide key={index}>
               <img src={item.image} alt={item.name || "Category Image"} />
               {item.name && (
-                <h3 className="-mt-16 text-3xl text-center text-white uppercase">
+                <h3 className="-mt-6 text-center text-white uppercase md:-mt-16 md:text-3xl">
                   {item.name}
                 </h3>
               )}
