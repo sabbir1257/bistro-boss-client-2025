@@ -1,7 +1,7 @@
 import React from "react";
 import Banner from "../Banner/Banner";
 import Category from "../Category /Category";
-import PopularMenu from "../PopularMenu/PopularMenu";
+import PopularMenu from "../../Shared/MenuCategory/MenuCategory";
 import CallUs from "../../../components/CallUs";
 import ChefRecommends from "../../../components/ChefRecommends";
 import Featured from "../Featured/Featured";
@@ -29,7 +29,7 @@ const Home = () => {
         heading={"FROM OUR MENU"}
         subHeading={"---Popular items---"}
       />
-      <PopularMenu name='View Full  Menu' />
+      <PopularMenu buttonName='View Full  Menu' category='popular'/>
       <CallUs />
       <ChefRecommends />
       <Featured />
