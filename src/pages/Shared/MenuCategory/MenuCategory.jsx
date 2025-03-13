@@ -1,12 +1,12 @@
 import MenuItem from "../MenuItem/MenuItem";
-import useMenu from "../../../hOOKS/useMenu";
+import useMenu from "../../../HOOKS/useMenu";
 
 const MenuCategory = ({buttonName, category}) => {
   const [menu] = useMenu();
   const categorye = menu.filter(item => item.category === category)
   return (
     <section className="p-4 md:mb-10">
-      <div className="grid gap-10 md:grid-cols-2">
+      <div className="grid gap-5 md:grid-cols-2">
         {categorye.map((item) => (
           <MenuItem key={item._id} item={item} />
         ))}
