@@ -5,7 +5,7 @@ import NavBar from '../pages/Shared/NavBar/NavBar';
 
 const Main = () => {
     return (
-        <div>
+        <div className='grid grid-rows-[1fr_auto] min-h-screen'>
             <NavBar/>
             <Outlet/> 
             <Footer/>
