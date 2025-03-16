@@ -5,27 +5,28 @@ import Menu from "../pages/Menu/Menu/Menu";
 import Order from "../pages/Order/Order/Order";
 
 const router = createBrowserRouter([
-    {
-        path: '/',
-        element: <Main/>,
-        children: [
-            {
-                path: '/',
-               element: <Home/>,
-            },
-            {
-                path: '/menu',
-                element: <Menu/>
-            },
-            {
-                path: '/order',
-                element: <Order/>
-            },
-            {
-
-            }
-        ]
-    }
-]) ;
+  {
+    path: "/",
+    element: <Main />,
+    children: [
+      {
+        path: "/",
+        element: <Home />,
+      },
+      {
+        path: "/menu",
+        element: <Menu />,
+      },
+      {
+        path: "/order/:category",
+        element: <Order />,
+      }, // ✅ Dynamic route
+      {
+        path: "/order",
+        element: <Order />,
+      }, // Default order page
+    ],
+  },
+]);
 
 export { router };

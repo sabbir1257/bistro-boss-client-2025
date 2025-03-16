@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import orderCover from "../../../assets/shop/banner2.jpg";
 import Cover from "../../Shared/Cover/Cover";
 import "react-tabs/style/react-tabs.css";
@@ -6,23 +7,43 @@ import useMenu from "../../../HOOKS/useMenu";
 import FoodCard from "../../../components/FoodCard/FoodCard";
 
 const Order = () => {
-  const [activeTab, setActiveTab] = useState(0);
+  const categories = [
+    "salad",
+    "pizza",
+    "soup",
+    "dessert",
+    "drinks",
+    "offered",
+  ];
+  const { category } = useParams();
+  const navigate = useNavigate();
   const [menu] = useMenu();
 
-  // Filter menu items by category
-  const desserts = menu.filter((item) => item.category === "dessert");
-  const soup = menu.filter((item) => item.category === "soup");
-  const salad = menu.filter((item) => item.category === "salad");
-  const pizza = menu.filter((item) => item.category === "pizza");
-  const offered = menu.filter((item) => item.category === "offered");
+  // Ensure the category is valid
+  const initialIndex = categories.indexOf(category);
+  const validIndex = initialIndex >= 0 ? initialIndex : 0;
+  const [activeTab, setActiveTab] = useState(validIndex);
 
-  const tabs = [
-    { name: "salad", content: salad },
-    { name: "pizza", content: pizza },
-    { name: "soups", content: soup },
-    { name: "desserts", content: desserts },
-    { name: "drinks", content: offered },
-  ];
+  useEffect(() => {
+    setActiveTab(validIndex); // Update tab when URL changes
+  }, [category]);
+
+  if (!menu.length) return <p>Loading menu...</p>;
+
+  // Filter menu items by category
+  const categoryData = {
+    offered: menu.filter((item) => item.category === "offered"),
+    salad: menu.filter((item) => item.category === "salad"),
+    pizza: menu.filter((item) => item.category === "pizza"),
+    soup: menu.filter((item) => item.category === "soup"),
+    dessert: menu.filter((item) => item.category === "dessert"),
+    drinks: menu.filter((item) => item.category === "drinks"),
+  };
+
+  const tabs = categories.map((name) => ({
+    name,
+    content: categoryData[name] || [],
+  }));
 
   return (
     <div>
@@ -32,28 +53,28 @@ const Order = () => {
         details="Would you like to try a dish?"
       />
 
+      {/* Tab Buttons */}
       <div className="flex justify-center mb-4">
         {tabs.map((tab, index) => (
           <button
             key={index}
-            onClick={() => setActiveTab(index)} // Change active tab on click
-            className={`py-2 px-4 text-lg focus:outline-none
-              ${
-                activeTab === index
-                  ? "border-b-2 border-[#BB8506] text-[#BB8506]" // Active tab style
-                  : "text-gray-600 hover:border-[#BB8506] hover:text-[#BB8506]"
-              }`}
+            onClick={() => navigate(`/order/${tab.name}`)} // ✅ Update URL on click
+            className={`py-2 px-4 text-lg focus:outline-none ${
+              activeTab === index
+                ? "border-b-2 border-[#BB8506] text-[#BB8506]"
+                : "text-gray-600 hover:border-[#BB8506] hover:text-[#BB8506]"
+            }`}
           >
             {tab.name}
           </button>
         ))}
       </div>
 
-      {/* Tab Content */}
+      {/* Food Items */}
       <div className="grid gap-4 m-4 sm:grid-cols-2 md:grid-cols-3">
-        {tabs[activeTab].content.length > 0 ? (
+        {tabs[activeTab]?.content.length > 0 ? (
           tabs[activeTab].content.map((item) => (
-            <FoodCard key={item._id} item={item} /> // Render FoodCard for each item in the active tab
+            <FoodCard key={item._id} item={item} />
           ))
         ) : (
           <p>No items available for this category.</p>
