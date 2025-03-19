@@ -9,7 +9,7 @@ const Testimonials = () => {
 
   // Fetch reviews data when the component mounts
   useEffect(() => {
-    fetch("/reviews.json") // ✅ Ensure the path to the JSON file is correct
+    fetch("http://localhost:8000/reviews") // ✅ Ensure the path to the JSON file is correct
       .then((res) => res.json())
       .then((data) => setReviews(data)) // Set reviews data into state
       .catch((error) => console.error("Error fetching reviews:", error));
