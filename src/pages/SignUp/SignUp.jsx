@@ -26,7 +26,7 @@ const {createUser} = useContext(AuthContext)
   return (
     <>
       <Helmet>
-        <title>DIstro Boss | Sign Up</title>
+        <title>Bistro Boss | Sign Up</title>
       </Helmet>
       <section className="bg-gray-50 dark:bg-gray-900">
         <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">

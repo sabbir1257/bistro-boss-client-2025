@@ -13,7 +13,7 @@ const MenuCategory = ({ buttonName, category }) => {
 
   return (
     <section className="p-4 md:mb-10">
-      <div className="grid gap-5 md:grid-cols-2">
+      <div className="grid gap-5 lg:grid-cols-2">
         {categorye.map((item) => (
           <MenuItem key={item._id} item={item} />
         ))}

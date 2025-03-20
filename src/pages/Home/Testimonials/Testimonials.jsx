@@ -17,7 +17,9 @@ const Testimonials = () => {
 
   // Handle previous slide
   const prevSlide = () => {
-    setCurrentIndex((prevIndex) => (prevIndex - 1 + reviews.length) % reviews.length);
+    setCurrentIndex(
+      (prevIndex) => (prevIndex - 1 + reviews.length) % reviews.length
+    );
   };
 
   // Handle next slide
@@ -27,40 +29,53 @@ const Testimonials = () => {
 
   return (
     <section className="p-4 w-full max-w-[1250px] mx-auto">
-      <SectionTitle heading="Customer Reviews" subHeading="---What Our Clients Say---" />
+      <SectionTitle
+        heading="Customer Reviews"
+        subHeading="---What Our Clients Say---"
+      />
 
-      <div className="relative w-full">
+      <div className="relative flex items-center justify-center w-full py-4 bg-white">
         {/* Left Arrow Button */}
         <button
           onClick={prevSlide}
-          className="absolute p-2 text-white transform -translate-y-1/2 bg-gray-700 rounded-full top-1/2 left-4"
+          className="absolute p-3 text-white -translate-y-1/2 bg-gray-700 rounded-full left-4 top-1/2"
         >
           &lt;
         </button>
 
         {/* Display a single Review Card */}
         {reviews.length > 0 && (
-          <div className="w-full p-8 mx-auto text-center bg-white rounded-lg shadow-lg">
-            <div className="w-1/5 mx-auto mb-4 ">
-              {/* Rating Component */}
-              <Rating className="text-yellow-500 " value={reviews[currentIndex].rating} readOnly />
+          <div className="w-full max-w-4xl p-8 mx-auto bg-white rounded-lg shadow-lg min-h-[350px] flex flex-col items-center justify-between">
+            {/* Rating Component */}
+            <div className="flex justify-center w-1/5 py-4 mx-auto mb-2">
+              <Rating
+                className="text-yellow-500"
+                value={reviews[currentIndex].rating}
+                readOnly
+              />
             </div>
 
             {/* Review Details */}
-            <p className="text-lg italic text-gray-700">{reviews[currentIndex].details}</p>
+            <p className="flex-1 py-4 text-lg italic text-center text-gray-700">
+              {reviews[currentIndex].details}
+            </p>
 
-            {/* Reviewer Name */}
-            <p className="mt-4 text-2xl font-semibold text-yellow-600">{reviews[currentIndex].name}</p>
-
-            {/* Review Date */}
-            <p className="mt-2 text-sm text-gray-500">{reviews[currentIndex].date}</p>
+            {/* Reviewer Info */}
+            <div className="text-center">
+              <p className="max-w-xs mt-4 overflow-hidden text-2xl font-semibold text-yellow-600 whitespace-nowrap text-ellipsis">
+                {reviews[currentIndex].name}
+              </p>
+              <p className="mt-1 text-sm text-gray-500">
+                {reviews[currentIndex].date}
+              </p>
+            </div>
           </div>
         )}
 
         {/* Right Arrow Button */}
         <button
           onClick={nextSlide}
-          className="absolute p-2 text-white transform -translate-y-1/2 bg-gray-700 rounded-full top-1/2 right-4"
+          className="absolute p-3 text-white -translate-y-1/2 bg-gray-700 rounded-full right-4 top-1/2"
         >
           &gt;
         </button>
