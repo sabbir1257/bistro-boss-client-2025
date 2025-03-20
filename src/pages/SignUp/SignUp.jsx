@@ -1,13 +1,24 @@
+import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 
-const Login = () => {
-  const handleSubmit = (e) => {
+const SignUp = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = (data) => {
+    console.log(data);
+  };
+
+  /*   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
     console.log(email, password);
-  };
+  }; */
 
   return (
     <section className="bg-gray-50 dark:bg-gray-900">
@@ -18,7 +29,7 @@ const Login = () => {
               Sign Up to your account
             </h1>
             <form
-              onSubmit={handleSubmit}
+              onSubmit={handleSubmit(onSubmit)}
               className="space-y-4 md:space-y-6"
               action="#"
             >
@@ -32,11 +43,11 @@ const Login = () => {
                 <input
                   type="name"
                   name="name"
-                  id="name"
-                  className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  {...register("name", { required: true })}
+                  className="bg-gray-50 border rounded-lg  block w-full p-2.5"
                   placeholder="name"
-                  required
                 />
+                {errors.name && <span className="text-red-700">Name is required</span>}
               </div>
               <div>
                 <label
@@ -48,11 +59,11 @@ const Login = () => {
                 <input
                   type="email"
                   name="email"
-                  id="email"
+                  {...register("email", { required: true })}
                   placeholder="name@company.com"
-                  className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  required
+                  className="bg-gray-50 border rounded-lg  block w-full p-2.5"
                 />
+                 {errors.email && <span className="text-red-700">Email is required</span>}
               </div>
               <div>
                 <label
@@ -64,15 +75,15 @@ const Login = () => {
                 <input
                   type="password"
                   name="password"
-                  id="password"
+                  {...register("password", {required: true, minLength: 6, maxLength: 20})}
                   placeholder="••••••••"
-                  className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  required
+                  className="bg-gray-50 border rounded-lg  block w-full p-2.5"
                 />
+                 {errors.name && <span className="text-red-700">password is required</span>}
               </div>
               <input
                 type="submit"
-                value="Login"
+                value="signUp"
                 className="bg-[#D1A054] p-3 rounded-lg mx-auto grid items-center"
               />
               <p className="text-sm font-light text-[#D1A054]">
@@ -92,4 +103,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default SignUp;
