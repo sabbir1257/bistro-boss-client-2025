@@ -1,22 +1,39 @@
 import { useContext } from "react";
 import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
+import Swal from "sweetalert2";
 const SignUp = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm();
-
-  const { createUser } = useContext(AuthContext);
+  const { createUser, updateUserProfile } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const onSubmit = (data) => {
     console.log(data);
     createUser(data.email, data.password).then((result) => {
       const loggedUser = result.user;
       console.log(loggedUser);
+      updateUserProfile(data.name, data.photoURL)
+        .then(() => {
+          console.log("user profile info updated");
+          reset();
+          Swal.fire({
+            position: "top-center",
+            icon: "success",
+            title: "User created successfully.",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          navigate('/'); 
+
+        })
+        .catch((error) => console.log(error));
     });
   };
 
@@ -45,7 +62,7 @@ const SignUp = () => {
                     Your Name
                   </label>
                   <input
-                    type="name"
+                    type="text"
                     name="name"
                     {...register("name", { required: true })}
                     className="bg-gray-50 border rounded-lg  block w-full p-2.5"
@@ -53,6 +70,23 @@ const SignUp = () => {
                   />
                   {errors.name && (
                     <span className="text-red-700">Name is required</span>
+                  )}
+                </div>
+                <div>
+                  <label
+                    htmlFor="name"
+                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  >
+                    Photo URL
+                  </label>
+                  <input
+                    type="text"
+                    {...register("photoURL", { required: true })}
+                    className="bg-gray-50 border rounded-lg  block w-full p-2.5"
+                    placeholder="Photo URL"
+                  />
+                  {errors.photoURL && (
+                    <span className="text-red-700">Photo URL is required</span>
                   )}
                 </div>
                 <div>
@@ -111,12 +145,12 @@ const SignUp = () => {
                   className="bg-[#D1A054] p-3 rounded-lg mx-auto grid items-center"
                 />
                 <p className="text-sm font-light text-[#D1A054]">
-                  Already have an account? {" "}
+                  Already have an account?{" "}
                   <Link
                     to="/login"
                     className="font-semibold text-primary-600 hover:underline "
                   >
-                     LogIn
+                    LogIn
                   </Link>
                 </p>
               </form>
