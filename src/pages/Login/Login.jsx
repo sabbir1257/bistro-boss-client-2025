@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import {
   loadCaptchaEnginge,
@@ -7,9 +7,9 @@ import {
 } from "react-simple-captcha";
 import { AuthContext } from "../../providers/AuthProvider";
 import { Helmet } from "react-helmet-async";
+import Swal from "sweetalert2";
 
 const Login = () => {
-  const captchaRef = useRef(null);
   const [disabled, setDisabled] = useState(true);
 
   const { signIn } = useContext(AuthContext);
@@ -25,26 +25,42 @@ const Login = () => {
     const password = form.password.value;
     console.log(email, password);
     signIn(email, password).then((result) => {
-      const user = result.user;
-      console.log(user);
+      const users = result.user;
+      console.log(users);
+      Swal.fire({
+        title: "User Login Successful",
+        showClass: {
+          popup: `
+            animate__animated
+            animate__fadeInUp
+            animate__faster
+          `,
+        },
+        hideClass: {
+          popup: `
+            animate__animated
+            animate__fadeOutDown
+            animate__faster
+          `,
+        },
+      });
     });
   };
 
-  const handleValidateCaptcha = () => {
-    const user_captcha_value = captchaRef.current.value;
-    console.log(user_captcha_value);
+  const handleValidateCaptcha = (e) => {
+    const user_captcha_value = e.target.value;
 
     if (validateCaptcha(user_captcha_value)) {
-      setDisabled(false); // Enable the login button if captcha is correct
+      setDisabled(false);
     } else {
-      setDisabled(true); // Keep the login button disabled if captcha is incorrect
+      setDisabled(true);
     }
   };
 
   return (
     <>
       <Helmet>
-        <title>DIstro Boss | LogIn</title>
+        <title>Bistro Boss | LogIn</title>
       </Helmet>
       <section className="bg-gray-50 dark:bg-gray-900">
         <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
@@ -95,26 +111,25 @@ const Login = () => {
                     <LoadCanvasTemplate />
                   </label>
                   <input
+                    onBlur={handleValidateCaptcha}
                     type="text"
                     name="captcha"
-                    ref={captchaRef}
                     placeholder="type the text above"
                     className="bg-gray-50 border rounded-lg  block w-full p-2.5"
                     required
                   />
-                  <button
-                    type="button" // Fix this: It should be type="button", not nClick
-                    onClick={handleValidateCaptcha}
-                    className="px-3 py-2 text-xs font-medium text-center text-white bg-[#D1A054]rounded-lg bg-[#D1A054] rounded-lg mt-2"
-                  >
-                    Validate Captcha
-                  </button>
                 </div>
                 <input
                   disabled={disabled}
                   type="submit"
                   value="Login"
-                  className="bg-[#D1A054] text-white p-3 rounded-lg mx-auto grid items-center"
+                  className={`bg-[#D1A054] text-white p-3 rounded-lg mx-auto grid items-center 
+                    transition duration-300 ease-in-out 
+                    ${
+                      disabled
+                        ? "opacity-50 cursor-not-allowed"
+                        : "hover:bg-[#B58332] hover:scale-105 cursor-pointer"
+                    }`}
                 />
                 <p className="text-sm font-light text-[#D1A054]">
                   New here?{" "}

@@ -10,19 +10,16 @@ const SignUp = () => {
     formState: { errors },
   } = useForm();
 
-const {createUser} = useContext(AuthContext)
+  const { createUser } = useContext(AuthContext);
 
   const onSubmit = (data) => {
     console.log(data);
-    createUser(data.email, data.password)
-    .then(result => {
-        const loggedUser = result.user;
-        console.log(loggedUser);
-    })
+    createUser(data.email, data.password).then((result) => {
+      const loggedUser = result.user;
+      console.log(loggedUser);
+    });
   };
 
-
-  
   return (
     <>
       <Helmet>
@@ -114,12 +111,12 @@ const {createUser} = useContext(AuthContext)
                   className="bg-[#D1A054] p-3 rounded-lg mx-auto grid items-center"
                 />
                 <p className="text-sm font-light text-[#D1A054]">
-                  New here?{" "}
+                  Already have an account? {" "}
                   <Link
                     to="/login"
                     className="font-semibold text-primary-600 hover:underline "
                   >
-                    Create a New Account
+                     LogIn
                   </Link>
                 </p>
               </form>
