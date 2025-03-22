@@ -2,10 +2,14 @@ import React, { useContext, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { AuthContext } from "../../../providers/AuthProvider";
 import { IoCartSharp } from "react-icons/io5";
+import useCart from "../../../HOOKS/useCart";
 
 const NavBar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { user, logOut } = useContext(AuthContext);
+  const [cart] = useCart();
+
+
   const handleLogOut = () => {
     logOut()
       .then(() => {})
@@ -95,7 +99,7 @@ const NavBar = () => {
                     <IoCartSharp className="w-5 h-5" />
                     <span className="sr-only">Add to Card</span>
                     <div className="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-red-700 border-2 border-white rounded-full -top-2 -end-2">
-                      0
+                      {cart.length}
                     </div>
                   </button>
 
