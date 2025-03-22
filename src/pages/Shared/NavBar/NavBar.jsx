@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { AuthContext } from "../../../providers/AuthProvider";
+import { IoCartSharp } from "react-icons/io5";
 
 const NavBar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -87,8 +88,17 @@ const NavBar = () => {
             {/* Conditional rendering for user */}
             <li>
               {user ? (
-                <div>
-                  <span>{user?.displayName}</span>
+                <div className="items-center gap-3 text-center md:flex">
+                  {/* <h2 className={navLinkClasses}>{user?.displayName}</h2> */}
+
+                  <button className="relative inline-flex items-center p-3 text-sm font-medium text-center text-white bg-[#B58130] rounded-lg hover:bg-[#A57328] ">
+                    <IoCartSharp className="w-5 h-5" />
+                    <span className="sr-only">Add to Card</span>
+                    <div className="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-red-700 border-2 border-white rounded-full -top-2 -end-2">
+                      0
+                    </div>
+                  </button>
+
                   <button
                     onClick={handleLogOut}
                     className="text-white bg-gray-800 hover:bg-[#D99904] rounded-lg text-sm px-5 py-2.5 me-2 mb-2"

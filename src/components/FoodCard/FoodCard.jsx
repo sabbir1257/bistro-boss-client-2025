@@ -2,6 +2,9 @@ import React from "react";
 
 const FoodCard = ({ item }) => {
   const { name, recipe, image, price } = item;
+  const handleAddToCard = food => {
+console.log(food)
+  }
 
   return (
     <div className="relative flex flex-col h-full overflow-hidden bg-white rounded-lg shadow-lg">
@@ -23,8 +26,9 @@ const FoodCard = ({ item }) => {
       <div className="p-4 mt-auto">
         <div className="flex justify-center">
           <button
+          onClick={() => handleAddToCard(item)}
             type="button"
-            className="uppercase  text-[#BB8506] border-0 border-b-4 border-[#BB8506] hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:border-gray-600 dark:hover:bg-gray-600 dark:focus:ring-gray-800"
+            className="uppercase  text-[#BB8506] border-0 border-b-4 border-[#BB8506] hover:bg-gray-900   font-medium rounded-lg text-sm px-5 py-2.5 text-center"
           >
             Add to Cart
           </button>
