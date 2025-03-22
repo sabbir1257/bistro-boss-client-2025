@@ -4,6 +4,8 @@ import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 import Swal from "sweetalert2";
+import img from "../../assets/others/authentication2.png";
+
 const SignUp = () => {
   const {
     register,
@@ -30,8 +32,7 @@ const SignUp = () => {
             showConfirmButton: false,
             timer: 1500,
           });
-          navigate('/'); 
-
+          navigate("/");
         })
         .catch((error) => console.log(error));
     });
@@ -42,7 +43,8 @@ const SignUp = () => {
       <Helmet>
         <title>Bistro Boss | Sign Up</title>
       </Helmet>
-      <section className="bg-gray-50 dark:bg-gray-900">
+      <section className="grid items-center md:grid-cols-2 bg-gray-50 dark:bg-gray-900">
+        <img src={img} alt="" />
         <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
           <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
             <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
@@ -141,7 +143,7 @@ const SignUp = () => {
                 </div>
                 <input
                   type="submit"
-                  value="sign Up"
+                  value="Sign Up"
                   className="bg-[#D1A054] p-3 rounded-lg mx-auto grid items-center"
                 />
                 <p className="text-sm font-light text-[#D1A054]">

@@ -22,7 +22,7 @@ const ChefRecommends = () => {
         {/* Grid Container for Cards */}
         <div className="grid w-full max-w-6xl grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {menu?.slice(0, 3).map((card) => (
-             <div className="relative flex flex-col h-full overflow-hidden bg-white rounded-lg shadow-lg">
+             <div key={card._id} className="relative flex flex-col h-full overflow-hidden bg-white rounded-lg shadow-lg">
              {/* Image */}
              <img src={card.image} alt={card.name} className="object-cover w-full h-48" />
        

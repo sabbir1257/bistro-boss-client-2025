@@ -87,17 +87,21 @@ const NavBar = () => {
             {/* Conditional rendering for user */}
             <li>
               {user ? (
-                <button
-                  onClick={handleLogOut}
-                  className="text-white bg-gray-800 hover:bg-[#D99904] rounded-lg text-sm px-5 py-2.5 me-2 mb-2"
-
-                >
-                  LogOut
-                </button>
+                <div>
+                  <span>{user?.displayName}</span>
+                  <button
+                    onClick={handleLogOut}
+                    className="text-white bg-gray-800 hover:bg-[#D99904] rounded-lg text-sm px-5 py-2.5 me-2 mb-2"
+                  >
+                    LogOut
+                  </button>
+                </div>
               ) : (
-                <NavLink to="/login" className={navLinkClasses}>
-                  Login
-                </NavLink>
+                <>
+                  <NavLink to="/login" className={navLinkClasses}>
+                    Login
+                  </NavLink>
+                </>
               )}
             </li>
           </ul>
