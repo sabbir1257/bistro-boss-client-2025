@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@smastrom/react-rating": "^1.5.0",
+    "axios": "^1.8.4",
     "firebase": "^11.4.0",
     "flowbite": "^3.1.2",
     "flowbite-react": "^0.10.2",
