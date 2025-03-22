@@ -1,10 +1,33 @@
-import React from "react";
+import Swal from "sweetalert2";
+import useAuth from "../../HOOKS/useAuth";
+import { useNavigate } from "react-router-dom";
 
 const FoodCard = ({ item }) => {
   const { name, recipe, image, price } = item;
-  const handleAddToCard = food => {
-console.log(food)
-  }
+  const { user } = useAuth();
+  const navigate = useNavigate();
+
+  const handleAddToCard = (food) => {
+    if(user && user.email){
+      //TODO: send cart item to the database 
+    }
+    else{
+      Swal.fire({
+        title: "You are not Logged In",
+        text: "Pleas login to add to the cart?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, login!"
+      }).then((result) => {
+        if (result.isConfirmed) {
+        //  send the user to the login page 
+        navigate('/login')
+        }
+      });
+    }
+  };
 
   return (
     <div className="relative flex flex-col h-full overflow-hidden bg-white rounded-lg shadow-lg">
@@ -26,7 +49,7 @@ console.log(food)
       <div className="p-4 mt-auto">
         <div className="flex justify-center">
           <button
-          onClick={() => handleAddToCard(item)}
+            onClick={() => handleAddToCard(item)}
             type="button"
             className="uppercase  text-[#BB8506] border-0 border-b-4 border-[#BB8506] hover:bg-gray-900   font-medium rounded-lg text-sm px-5 py-2.5 text-center"
           >
