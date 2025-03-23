@@ -6,6 +6,8 @@ import Order from "../pages/Order/Order/Order";
 import Contact from "../pages/Contact/Contact";
 import Login from "../pages/Login/Login";
 import SignUp from "../pages/SignUp/SignUp";
+import Dashboard from "../Layout/Dashboard";
+import Cart from "../pages/Deshboard/Cart/Cart";
 
 const router = createBrowserRouter([
   {
@@ -42,6 +44,16 @@ const router = createBrowserRouter([
       }
     ],
   },
+  {
+    path: '/dashboard',
+    element: <Dashboard/>,
+    children: [
+      {
+        path: 'cart',  // Updated this line, removed the leading slash
+        element: <Cart/>
+      }
+    ]
+  }
 ]);
 
 export { router };

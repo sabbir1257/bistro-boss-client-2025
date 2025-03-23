@@ -9,7 +9,6 @@ const NavBar = () => {
   const { user, logOut } = useContext(AuthContext);
   const [cart] = useCart();
 
-
   const handleLogOut = () => {
     logOut()
       .then(() => {})
@@ -95,13 +94,15 @@ const NavBar = () => {
                 <div className="items-center gap-3 text-center md:flex">
                   {/* <h2 className={navLinkClasses}>{user?.displayName}</h2> */}
 
-                  <button className="relative inline-flex items-center p-3 text-sm font-medium text-center text-white bg-[#B58130] rounded-lg hover:bg-[#A57328] ">
-                    <IoCartSharp className="w-5 h-5" />
-                    <span className="sr-only">Add to Card</span>
-                    <div className="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-red-700 border-2 border-white rounded-full -top-2 -end-2">
-                      {cart.length}
-                    </div>
-                  </button>
+                  <NavLink to="/dashboard/cart">
+                    <button className="relative inline-flex items-center p-3 text-sm font-medium text-center text-white bg-[#B58130] rounded-lg hover:bg-[#A57328] ">
+                      <IoCartSharp className="w-5 h-5" />
+                      <span className="sr-only">Add to Card</span>
+                      <div className="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-red-700 border-2 border-white rounded-full -top-2 -end-2">
+                        {cart.length}
+                      </div>
+                    </button>
+                  </NavLink>
 
                   <button
                     onClick={handleLogOut}
