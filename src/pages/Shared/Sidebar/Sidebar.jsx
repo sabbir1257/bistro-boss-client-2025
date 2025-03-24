@@ -3,14 +3,13 @@ import { NavLink } from "react-router-dom";
 import clsx from "clsx";
 import {
   FaHome,
-  FaCog,
-  FaUsers,
-  FaChartBar,
-  FaSignOutAlt,
   FaTimes,
   FaBars,
   FaCartArrowDown,
+  FaRegCalendarAlt,
 } from "react-icons/fa"; // Importing icons from react-icons
+import { MdOutlineReviews, MdPayments } from "react-icons/md";
+import { FaCalendarDays } from "react-icons/fa6";
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -22,12 +21,12 @@ const Sidebar = () => {
   // Memoize the list of links with icons
   const navLinks = useMemo(
     () => [
-      { to: "dashboard/cart", label: "My Cart", icon: <FaCartArrowDown /> },
-      { to: "/", label: "Home", icon: <FaHome /> },
-      { to: "/settings", label: "Settings", icon: <FaCog /> },
-      { to: "/users", label: "Users", icon: <FaUsers /> },
-      { to: "/reports", label: "Reports", icon: <FaChartBar /> },
-      { to: "/logout", label: "Logout", icon: <FaSignOutAlt /> },
+      { to: "/dashboard/userHome", label: "user Home", icon: <FaHome /> },
+      { to: "/dashboard/reservation", label: "Reservation", icon: <FaCalendarDays /> },
+      { to: "/dashboard/paymentHistory", label: "payment history", icon: <MdPayments /> },
+      { to: "/dashboard/cart", label: "My Cart", icon: <FaCartArrowDown /> },
+      { to: "/dashboard/addReview", label: "Add Review", icon: <MdOutlineReviews /> },
+      { to: "/logout", label: "My Booking", icon: <FaRegCalendarAlt /> },
     ],
     []
   );
@@ -61,7 +60,7 @@ const Sidebar = () => {
             <NavLink
               key={to}
               to={to}
-              className="flex items-center px-4 py-2 text-black rounded hover:text-white hover:bg-gray-700"
+              className="flex items-center px-4 py-2 text-black uppercase rounded hover:text-white hover:bg-gray-700"
               activeClassName="bg-gray-600"
             >
               <span className="mr-3">{icon}</span> {/* Render the icon here */}
