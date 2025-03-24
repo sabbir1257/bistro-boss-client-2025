@@ -1,9 +1,40 @@
 import React from "react";
 import useCart from "../../../HOOKS/useCart";
+import { MdDeleteOutline } from "react-icons/md";
+import Swal from "sweetalert2";
+import useAxiosSecure from "../../../HOOKS/useAxiosSecure";
 
 const Cart = () => {
-  const [cart] = useCart();
+  const [cart, refetch] = useCart();
   const totalPrice = cart.reduce((total, item) => total + item.price, 0);
+  const axiosSecure = useAxiosSecure();
+
+  const handleDelete = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosSecure.delete(`/carts/${id}`)
+        .then((res) => {
+          if (res.data.deletedCount > 0) {
+            refetch();
+            Swal.fire({
+              title: "Deleted!",
+              text: "Your file has been deleted.",
+              icon: "success",
+            });
+          }
+        });
+      }
+    });
+  };
+
   return (
     <div className="flex items-center justify-center h-screen">
       <div className="max-w-[992px] p-3">
@@ -57,8 +88,11 @@ const Cart = () => {
                   <td className="px-6 py-4">{item.name}</td>
                   <td className="px-6 py-4">${item.price}</td>
                   <td className="px-6 py-4">
-                    <button className="font-medium text-red-600 dark:text-red-500">
-                      Delete
+                    <button
+                      onClick={() => handleDelete(item._id)}
+                      className="p-2 text-2xl font-medium text-white bg-red-600 rounded-md "
+                    >
+                      <MdDeleteOutline />
                     </button>
                   </td>
                 </tr>

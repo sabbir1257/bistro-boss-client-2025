@@ -10,13 +10,14 @@ import {
 } from "react-icons/fa";
 import { MdOutlineReviews, MdPayments } from "react-icons/md";
 import { FaCalendarDays } from "react-icons/fa6";
+import useCart from "../../../HOOKS/useCart";
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
-
   const toggleSidebar = () => {
     setIsOpen((prevState) => !prevState);
   };
+  const [cart] = useCart();
 
   const navLinks = [
     { to: "/dashboard/userHome", label: "User Home", icon: <FaHome /> },
@@ -30,7 +31,11 @@ const Sidebar = () => {
       label: "Payment History",
       icon: <MdPayments />,
     },
-    { to: "/dashboard/cart", label: "My Cart", icon: <FaCartArrowDown /> },
+    {
+      to: "/dashboard/cart",
+      label: `My Cart (${cart.length})`,
+      icon: <FaCartArrowDown />,
+    },
     {
       to: "/dashboard/review",
       label: "Add Review",
@@ -53,10 +58,7 @@ const Sidebar = () => {
   return (
     <div className="">
       <div
-        className={clsx(
-          isOpen ? "block" : "hidden",
-          "md:block fixed inset-0"
-        )}
+        className={clsx(isOpen ? "block" : "hidden", "md:block fixed inset-0")}
         onClick={toggleSidebar}
       ></div>
 
@@ -76,7 +78,7 @@ const Sidebar = () => {
               className={({ isActive }) =>
                 clsx(
                   "flex items-center px-4 py-2 text-black uppercase rounded hover:text-white hover:bg-gray-700",
-                  isActive && "bg-gray-600"
+                  isActive && "bg-gray-600 text-white"
                 )
               }
             >
@@ -85,7 +87,7 @@ const Sidebar = () => {
             </NavLink>
           ))}
 
-          <hr className="my-4 border-t border-gray-500" />
+          <hr className="my-4 border-t border-black" />
 
           {additionalLinks.map(({ to, label, icon }) => (
             <NavLink
@@ -94,7 +96,7 @@ const Sidebar = () => {
               className={({ isActive }) =>
                 clsx(
                   "flex items-center px-4 py-2 text-black uppercase rounded hover:text-white hover:bg-gray-700",
-                  isActive && "bg-gray-600"
+                  isActive && "bg-gray-600 text-white"
                 )
               }
             >
