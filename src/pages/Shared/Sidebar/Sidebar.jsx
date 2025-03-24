@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import clsx from "clsx";
 import {
@@ -7,7 +7,7 @@ import {
   FaBars,
   FaCartArrowDown,
   FaRegCalendarAlt,
-} from "react-icons/fa"; // Importing icons from react-icons
+} from "react-icons/fa";
 import { MdOutlineReviews, MdPayments } from "react-icons/md";
 import { FaCalendarDays } from "react-icons/fa6";
 
@@ -18,59 +18,93 @@ const Sidebar = () => {
     setIsOpen((prevState) => !prevState);
   };
 
-  // Memoize the list of links with icons
-  const navLinks = useMemo(
-    () => [
-      { to: "/dashboard/userHome", label: "user Home", icon: <FaHome /> },
-      { to: "/dashboard/reservation", label: "Reservation", icon: <FaCalendarDays /> },
-      { to: "/dashboard/paymentHistory", label: "payment history", icon: <MdPayments /> },
-      { to: "/dashboard/cart", label: "My Cart", icon: <FaCartArrowDown /> },
-      { to: "/dashboard/addReview", label: "Add Review", icon: <MdOutlineReviews /> },
-      { to: "/logout", label: "My Booking", icon: <FaRegCalendarAlt /> },
-    ],
-    []
-  );
+  const navLinks = [
+    { to: "/dashboard/userHome", label: "User Home", icon: <FaHome /> },
+    {
+      to: "/dashboard/reservation",
+      label: "Reservation",
+      icon: <FaCalendarDays />,
+    },
+    {
+      to: "/dashboard/paymentHistory",
+      label: "Payment History",
+      icon: <MdPayments />,
+    },
+    { to: "/dashboard/cart", label: "My Cart", icon: <FaCartArrowDown /> },
+    {
+      to: "/dashboard/review",
+      label: "Add Review",
+      icon: <MdOutlineReviews />,
+    },
+    {
+      to: "/dashboard/booking",
+      label: "My Booking",
+      icon: <FaRegCalendarAlt />,
+    },
+  ];
+
+  const additionalLinks = [
+    { to: "/", label: "Home", icon: <FaHome /> },
+    { to: "/menu", label: "Menu", icon: <FaBars /> },
+    { to: "/shop", label: "Shop", icon: <FaCartArrowDown /> },
+    { to: "/contact", label: "Contact", icon: <FaRegCalendarAlt /> },
+  ];
 
   return (
-    <div className="flex">
-      {/* Sidebar Overlay */}
+    <div className="">
       <div
         className={clsx(
           isOpen ? "block" : "hidden",
-          "md:block fixed inset-0 bg-gray-800 bg-opacity-50 z-40"
+          "md:block fixed inset-0"
         )}
         onClick={toggleSidebar}
       ></div>
 
-      {/* Sidebar */}
       <div
         className={clsx(
           isOpen ? "translate-x-0" : "-translate-x-full",
           "md:translate-x-0 md:flex md:flex-col md:w-64 w-64 bg-[#D1A054] text-black fixed h-full transition-transform duration-300 z-50"
         )}
       >
-        {/* Sidebar header */}
-        <div className="p-4 text-2xl font-bold text-black">
-          <span>Dashboard</span>
-        </div>
+        <div className="p-4 text-2xl font-bold text-black">Dashboard</div>
 
-        {/* Sidebar links */}
         <nav className="flex flex-col p-4 space-y-4">
           {navLinks.map(({ to, label, icon }) => (
             <NavLink
               key={to}
               to={to}
-              className="flex items-center px-4 py-2 text-black uppercase rounded hover:text-white hover:bg-gray-700"
-              activeClassName="bg-gray-600"
+              className={({ isActive }) =>
+                clsx(
+                  "flex items-center px-4 py-2 text-black uppercase rounded hover:text-white hover:bg-gray-700",
+                  isActive && "bg-gray-600"
+                )
+              }
             >
-              <span className="mr-3">{icon}</span> {/* Render the icon here */}
+              <span className="mr-3">{icon}</span>
+              {label}
+            </NavLink>
+          ))}
+
+          <hr className="my-4 border-t border-gray-500" />
+
+          {additionalLinks.map(({ to, label, icon }) => (
+            <NavLink
+              key={to}
+              to={to}
+              className={({ isActive }) =>
+                clsx(
+                  "flex items-center px-4 py-2 text-black uppercase rounded hover:text-white hover:bg-gray-700",
+                  isActive && "bg-gray-600"
+                )
+              }
+            >
+              <span className="mr-3">{icon}</span>
               {label}
             </NavLink>
           ))}
         </nav>
       </div>
 
-      {/* Mobile Menu Button (Hamburger icon for mobile) */}
       <button
         className={clsx(
           "md:hidden p-4 fixed top-0 left-0 z-50",
@@ -86,12 +120,6 @@ const Sidebar = () => {
           <FaBars className="w-6 h-6" />
         )}
       </button>
-
-      {/* Content */}
-      <div className="flex-1 p-6 ">
-        <h1 className="text-2xl font-bold">Main Content</h1>
-        {/* Add your main content here */}
-      </div>
     </div>
   );
 };

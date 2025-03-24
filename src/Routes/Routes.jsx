@@ -31,29 +31,29 @@ const router = createBrowserRouter([
         element: <Order />,
       }, // Default order page
       {
-        path: '/contact_us',
-        element: <Contact/>
+        path: "/contact_us",
+        element: <Contact />,
       },
       {
-        path: '/login',
-        element: <Login/>
+        path: "/login",
+        element: <Login />,
       },
       {
-        path: '/signUp',
-        element: <SignUp/>
-      }
+        path: "/signUp",
+        element: <SignUp />,
+      },
     ],
   },
   {
-    path: '/dashboard',
-    element: <Dashboard/>,
+    path: "/dashboard",
+    element: <Dashboard />,
     children: [
       {
-        path: 'cart',  // Updated this line, removed the leading slash
-        element: <Cart/>
-      }
-    ]
-  }
+        path: "cart",
+        element: <Cart />,
+      },
+    ],
+  },
 ]);
 
 export { router };
