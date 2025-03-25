@@ -56,7 +56,7 @@ const Sidebar = () => {
   ];
 
   return (
-    <div className="">
+    <div>
       <div
         className={clsx(isOpen ? "block" : "hidden", "md:block fixed inset-0")}
         onClick={toggleSidebar}
@@ -77,7 +77,7 @@ const Sidebar = () => {
               to={to}
               className={({ isActive }) =>
                 clsx(
-                  "flex items-center px-4 py-2 text-black uppercase rounded hover:text-white hover:bg-gray-700",
+                  "flex items-center px-4 font-semibold py-2 text-black uppercase rounded hover:text-white hover:bg-gray-700",
                   isActive && "bg-gray-600 text-white"
                 )
               }
@@ -95,7 +95,7 @@ const Sidebar = () => {
               to={to}
               className={({ isActive }) =>
                 clsx(
-                  "flex items-center px-4 py-2 text-black uppercase rounded hover:text-white hover:bg-gray-700",
+                  "flex items-center px-4 py-2 font-semibold text-black uppercase rounded hover:text-white hover:bg-gray-700",
                   isActive && "bg-gray-600 text-white"
                 )
               }
