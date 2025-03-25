@@ -56,6 +56,7 @@ const Sidebar = () => {
   ];
 
   return (
+    // side bar
     <div>
       <div
         className={clsx(isOpen ? "block" : "hidden", "md:block fixed inset-0")}
