@@ -56,7 +56,7 @@ const Sidebar = () => {
   ];
 
   return (
-    <div >
+    <div>
       <div
         className={clsx(isOpen ? "block" : "hidden", "md:block fixed inset-0")}
         onClick={toggleSidebar}
