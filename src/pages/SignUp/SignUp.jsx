@@ -7,6 +7,7 @@ import Swal from "sweetalert2";
 import img from "../../assets/others/authentication2.png";
 import useAxiosPublic from "../../HOOKS/useAxiosPublic";
 import { FcGoogle } from "react-icons/fc";
+import SocialLogin from "../../components/SocialLogin/SocialLogin";
 
 const SignUp = () => {
   const axiosPublic = useAxiosPublic();
@@ -167,6 +168,8 @@ const SignUp = () => {
                   </Link>
                 </p>
               </form>
+              <hr />
+              <SocialLogin/>
             </div>
           </div>
         </div>

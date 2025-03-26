@@ -18,6 +18,8 @@ const Sidebar = () => {
     setIsOpen((prevState) => !prevState);
   };
   const [cart] = useCart();
+  // TODO: get isAdmion valyue from database
+  const isAdmin = true;
 
   const navLinks = [
     { to: "/dashboard/userHome", label: "User Home", icon: <FaHome /> },
