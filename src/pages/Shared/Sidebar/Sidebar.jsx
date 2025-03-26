@@ -7,8 +7,10 @@ import {
   FaBars,
   FaCartArrowDown,
   FaRegCalendarAlt,
+  FaClipboardList,
+  FaUsers,
 } from "react-icons/fa";
-import { MdOutlineReviews, MdPayments } from "react-icons/md";
+import { MdAddBox, MdOutlineReviews, MdPayments } from "react-icons/md";
 import { FaCalendarDays } from "react-icons/fa6";
 import useCart from "../../../HOOKS/useCart";
 
@@ -21,34 +23,50 @@ const Sidebar = () => {
   // TODO: get isAdmion valyue from database
   const isAdmin = true;
 
-  const navLinks = [
-    { to: "/dashboard/userHome", label: "User Home", icon: <FaHome /> },
-    {
-      to: "/dashboard/reservation",
-      label: "Reservation",
-      icon: <FaCalendarDays />,
-    },
-    {
-      to: "/dashboard/paymentHistory",
-      label: "Payment History",
-      icon: <MdPayments />,
-    },
-    {
-      to: "/dashboard/cart",
-      label: `My Cart (${cart.length})`,
-      icon: <FaCartArrowDown />,
-    },
-    {
-      to: "/dashboard/review",
-      label: "Add Review",
-      icon: <MdOutlineReviews />,
-    },
-    {
-      to: "/dashboard/booking",
-      label: "My Booking",
-      icon: <FaRegCalendarAlt />,
-    },
-  ];
+  const navLinks = isAdmin
+    ? [
+        { to: "/dashboard/adminHome", label: "Admin Home", icon: <FaHome /> },
+        { to: "/dashboard/addItems", label: "Add Items", icon: <MdAddBox /> },
+        {
+          to: "/dashboard/manageItems",
+          label: "Manage Items",
+          icon: <FaClipboardList />,
+        },
+        {
+          to: "/dashboard/manageBookings",
+          label: "Manage Bookings",
+          icon: <FaClipboardList />,
+        },
+        { to: "/dashboard/allUsers", label: "All Users", icon: <FaUsers /> },
+      ]
+    : [
+        { to: "/dashboard/userHome", label: "User Home", icon: <FaHome /> },
+        {
+          to: "/dashboard/reservation",
+          label: "Reservation",
+          icon: <FaCalendarDays />,
+        },
+        {
+          to: "/dashboard/paymentHistory",
+          label: "Payment History",
+          icon: <MdPayments />,
+        },
+        {
+          to: "/dashboard/cart",
+          label: `My Cart (${cart.length})`,
+          icon: <FaCartArrowDown />,
+        },
+        {
+          to: "/dashboard/review",
+          label: "Add Review",
+          icon: <MdOutlineReviews />,
+        },
+        {
+          to: "/dashboard/booking",
+          label: "My Booking",
+          icon: <FaRegCalendarAlt />,
+        },
+      ];
 
   const additionalLinks = [
     { to: "/", label: "Home", icon: <FaHome /> },

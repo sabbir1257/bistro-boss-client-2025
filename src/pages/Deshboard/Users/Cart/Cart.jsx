@@ -1,8 +1,8 @@
 import React from "react";
-import useCart from "../../../HOOKS/useCart";
 import { MdDeleteOutline } from "react-icons/md";
 import Swal from "sweetalert2";
-import useAxiosSecure from "../../../HOOKS/useAxiosSecure";
+import useCart from "../../../../HOOKS/useCart";
+import useAxiosSecure from "../../../../HOOKS/useAxiosSecure";
 
 const Cart = () => {
   const [cart, refetch] = useCart();
