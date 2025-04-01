@@ -9,6 +9,7 @@ import SignUp from "../pages/SignUp/SignUp";
 import Dashboard from "../Layout/Dashboard";
 import Cart from "../pages/Deshboard/Cart/Cart";
 import Review from "../pages/Deshboard/Review/Review";
+import AllUsers from "../pages/Deshboard/Admin/AllUser";
 
 const router = createBrowserRouter([
   {
@@ -56,6 +57,10 @@ const router = createBrowserRouter([
       {
         path: 'review',
         element: <Review/>
+      },
+      {
+        path: 'allUsers',
+        element: <AllUsers/>
       }
     ],
   },

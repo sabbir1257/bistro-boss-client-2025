@@ -7,8 +7,10 @@ import {
   FaBars,
   FaCartArrowDown,
   FaRegCalendarAlt,
+  FaClipboardList,
+  FaUsers,
 } from "react-icons/fa";
-import { MdOutlineReviews, MdPayments } from "react-icons/md";
+import { MdAddBox, MdOutlineReviews, MdPayments } from "react-icons/md";
 import { FaCalendarDays } from "react-icons/fa6";
 import useCart from "../../../HOOKS/useCart";
 
@@ -20,32 +22,37 @@ const Sidebar = () => {
   const [cart] = useCart();
 
   const navLinks = [
-    { to: "/dashboard/userHome", label: "User Home", icon: <FaHome /> },
-    {
-      to: "/dashboard/reservation",
-      label: "Reservation",
-      icon: <FaCalendarDays />,
-    },
-    {
-      to: "/dashboard/paymentHistory",
-      label: "Payment History",
-      icon: <MdPayments />,
-    },
-    {
-      to: "/dashboard/cart",
-      label: `My Cart (${cart.length})`,
-      icon: <FaCartArrowDown />,
-    },
-    {
-      to: "/dashboard/review",
-      label: "Add Review",
-      icon: <MdOutlineReviews />,
-    },
-    {
-      to: "/dashboard/booking",
-      label: "My Booking",
-      icon: <FaRegCalendarAlt />,
-    },
+    { to: "/dashboard/adminHome", label: "Admin Home", icon: <FaHome /> },
+      { to: "/dashboard/addItems", label: "Add Items", icon: <MdAddBox /> },
+      { to: "/dashboard/manageItems", label: "Manage Items", icon: <FaClipboardList /> },
+      { to: "/dashboard/manageBookings", label: "Manage Bookings", icon: <FaRegCalendarAlt /> },
+      { to: "/dashboard/allUsers", label: "All Users", icon: <FaUsers /> },
+    // { to: "/dashboard/userHome", label: "User Home", icon: <FaHome /> },
+    // {
+    //   to: "/dashboard/reservation",
+    //   label: "Reservation",
+    //   icon: <FaCalendarDays />,
+    // },
+    // {
+    //   to: "/dashboard/paymentHistory",
+    //   label: "Payment History",
+    //   icon: <MdPayments />,
+    // },
+    // {
+    //   to: "/dashboard/cart",
+    //   label: `My Cart (${cart.length})`,
+    //   icon: <FaCartArrowDown />,
+    // },
+    // {
+    //   to: "/dashboard/review",
+    //   label: "Add Review",
+    //   icon: <MdOutlineReviews />,
+    // },
+    // {
+    //   to: "/dashboard/booking",
+    //   label: "My Booking",
+    //   icon: <FaRegCalendarAlt />,
+    // },
   ];
 
   const additionalLinks = [
@@ -56,8 +63,7 @@ const Sidebar = () => {
   ];
 
   return (
-    // side bar
-    <div>
+    <div className="">
       <div
         className={clsx(isOpen ? "block" : "hidden", "md:block fixed inset-0")}
         onClick={toggleSidebar}
@@ -78,7 +84,7 @@ const Sidebar = () => {
               to={to}
               className={({ isActive }) =>
                 clsx(
-                  "flex items-center px-4 font-semibold py-2 text-black uppercase rounded hover:text-white hover:bg-gray-700",
+                  "flex items-center px-4 font-bold py-2 text-black uppercase rounded hover:text-white hover:bg-gray-700",
                   isActive && "bg-gray-600 text-white"
                 )
               }
@@ -116,7 +122,7 @@ const Sidebar = () => {
         onClick={toggleSidebar}
       >
         {isOpen ? (
-          <div className="absolute text-black top-4 left-48 hover:text-white md:hidden">
+          <div className="absolute font-semibold text-black top-4 left-48 hover:text-white md:hidden">
             <FaTimes className="w-6 h-6" />
           </div>
         ) : (
