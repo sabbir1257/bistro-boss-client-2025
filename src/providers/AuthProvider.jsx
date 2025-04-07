@@ -3,6 +3,7 @@ import { app } from "../firebase/firebase.config";
 import {
   createUserWithEmailAndPassword,
   getAuth,
+<<<<<<< HEAD
   GoogleAuthProvider,
   onAuthStateChanged,
   signInWithEmailAndPassword,
@@ -10,6 +11,13 @@ import {
   signOut,
   updateProfile,
 } from "firebase/auth";
+=======
+  onAuthStateChanged,
+  signOut,
+  updateProfile,
+} from "firebase/auth";
+import { signInWithEmailAndPassword } from "firebase/auth/cordova";
+>>>>>>> 40a0ed2a1c8126e2dda488b513ffd2d279b8a177
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const AuthContext = createContext(null);
@@ -18,7 +26,10 @@ const auth = getAuth(app);
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+<<<<<<< HEAD
   const googleProvider = new GoogleAuthProvider();
+=======
+>>>>>>> 40a0ed2a1c8126e2dda488b513ffd2d279b8a177
 
   const createUser = (email, password) => {
     setLoading(true);
@@ -30,11 +41,14 @@ const AuthProvider = ({ children }) => {
     return signInWithEmailAndPassword(auth, email, password);
   };
 
+<<<<<<< HEAD
   const googleSingIn = () => {
     setLoading(true);
     return signInWithPopup(auth, googleProvider);
   };
 
+=======
+>>>>>>> 40a0ed2a1c8126e2dda488b513ffd2d279b8a177
   const logOut = () => {
     setLoading(true);
     return signOut(auth);
@@ -42,14 +56,24 @@ const AuthProvider = ({ children }) => {
 
   const updateUserProfile = (name, photo) => {
     return updateProfile(auth.currentUser, {
+<<<<<<< HEAD
       displayName: name,
       photoURL: photo,
     });
   };
+=======
+      displayName: name, photoURL: photo
+    })
+  }
+>>>>>>> 40a0ed2a1c8126e2dda488b513ffd2d279b8a177
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
+<<<<<<< HEAD
+=======
+      console.log("current user", currentUser);
+>>>>>>> 40a0ed2a1c8126e2dda488b513ffd2d279b8a177
       setLoading(false);
     });
     return () => {
@@ -62,9 +86,14 @@ const AuthProvider = ({ children }) => {
     loading,
     createUser,
     signIn,
+<<<<<<< HEAD
     googleSingIn,
     logOut,
     updateUserProfile,
+=======
+    logOut,
+    updateUserProfile
+>>>>>>> 40a0ed2a1c8126e2dda488b513ffd2d279b8a177
   };
 
   return (

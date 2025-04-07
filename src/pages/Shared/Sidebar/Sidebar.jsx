@@ -20,6 +20,7 @@ const Sidebar = () => {
     setIsOpen((prevState) => !prevState);
   };
   const [cart] = useCart();
+<<<<<<< HEAD
   // TODO: get isAdmion valyue from database
   const isAdmin = true;
 
@@ -67,6 +68,42 @@ const Sidebar = () => {
           icon: <FaRegCalendarAlt />,
         },
       ];
+=======
+
+  const navLinks = [
+    { to: "/dashboard/adminHome", label: "Admin Home", icon: <FaHome /> },
+      { to: "/dashboard/addItems", label: "Add Items", icon: <MdAddBox /> },
+      { to: "/dashboard/manageItems", label: "Manage Items", icon: <FaClipboardList /> },
+      { to: "/dashboard/manageBookings", label: "Manage Bookings", icon: <FaRegCalendarAlt /> },
+      { to: "/dashboard/allUsers", label: "All Users", icon: <FaUsers /> },
+    // { to: "/dashboard/userHome", label: "User Home", icon: <FaHome /> },
+    // {
+    //   to: "/dashboard/reservation",
+    //   label: "Reservation",
+    //   icon: <FaCalendarDays />,
+    // },
+    // {
+    //   to: "/dashboard/paymentHistory",
+    //   label: "Payment History",
+    //   icon: <MdPayments />,
+    // },
+    // {
+    //   to: "/dashboard/cart",
+    //   label: `My Cart (${cart.length})`,
+    //   icon: <FaCartArrowDown />,
+    // },
+    // {
+    //   to: "/dashboard/review",
+    //   label: "Add Review",
+    //   icon: <MdOutlineReviews />,
+    // },
+    // {
+    //   to: "/dashboard/booking",
+    //   label: "My Booking",
+    //   icon: <FaRegCalendarAlt />,
+    // },
+  ];
+>>>>>>> 40a0ed2a1c8126e2dda488b513ffd2d279b8a177
 
   const additionalLinks = [
     { to: "/", label: "Home", icon: <FaHome /> },
@@ -97,7 +134,11 @@ const Sidebar = () => {
               to={to}
               className={({ isActive }) =>
                 clsx(
+<<<<<<< HEAD
                   "flex items-center px-4 py-2 text-black uppercase rounded hover:text-white hover:bg-gray-700",
+=======
+                  "flex items-center px-4 font-bold py-2 text-black uppercase rounded hover:text-white hover:bg-gray-700",
+>>>>>>> 40a0ed2a1c8126e2dda488b513ffd2d279b8a177
                   isActive && "bg-gray-600 text-white"
                 )
               }
@@ -115,7 +156,11 @@ const Sidebar = () => {
               to={to}
               className={({ isActive }) =>
                 clsx(
+<<<<<<< HEAD
                   "flex items-center px-4 py-2 text-black uppercase rounded hover:text-white hover:bg-gray-700",
+=======
+                  "flex items-center px-4 py-2 font-semibold text-black uppercase rounded hover:text-white hover:bg-gray-700",
+>>>>>>> 40a0ed2a1c8126e2dda488b513ffd2d279b8a177
                   isActive && "bg-gray-600 text-white"
                 )
               }
@@ -135,7 +180,11 @@ const Sidebar = () => {
         onClick={toggleSidebar}
       >
         {isOpen ? (
+<<<<<<< HEAD
           <div className="absolute text-black top-4 left-48 hover:text-white md:hidden">
+=======
+          <div className="absolute font-semibold text-black top-4 left-48 hover:text-white md:hidden">
+>>>>>>> 40a0ed2a1c8126e2dda488b513ffd2d279b8a177
             <FaTimes className="w-6 h-6" />
           </div>
         ) : (

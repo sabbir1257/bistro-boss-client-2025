@@ -9,7 +9,11 @@ import { Helmet } from "react-helmet-async";
 import Cover from "../../Shared/Cover/Cover";
 import SectionTitle from "../../../components/SectionTitle";
 import coverImage from "../../../assets/home/chef-service.jpg";
+<<<<<<< HEAD
 import Category from "../Category /Category";// Fixed path
+=======
+import Category from "../Category/Category";
+>>>>>>> 40a0ed2a1c8126e2dda488b513ffd2d279b8a177
 
 const Home = () => {
   return (

@@ -5,12 +5,17 @@ import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 import Swal from "sweetalert2";
 import img from "../../assets/others/authentication2.png";
+<<<<<<< HEAD
 import useAxiosPublic from "../../HOOKS/useAxiosPublic";
 import { FcGoogle } from "react-icons/fc";
 import SocialLogin from "../../components/SocialLogin/SocialLogin";
 
 const SignUp = () => {
   const axiosPublic = useAxiosPublic();
+=======
+
+const SignUp = () => {
+>>>>>>> 40a0ed2a1c8126e2dda488b513ffd2d279b8a177
   const {
     register,
     handleSubmit,
@@ -21,11 +26,16 @@ const SignUp = () => {
   const navigate = useNavigate();
 
   const onSubmit = (data) => {
+<<<<<<< HEAD
+=======
+    console.log(data);
+>>>>>>> 40a0ed2a1c8126e2dda488b513ffd2d279b8a177
     createUser(data.email, data.password).then((result) => {
       const loggedUser = result.user;
       console.log(loggedUser);
       updateUserProfile(data.name, data.photoURL)
         .then(() => {
+<<<<<<< HEAD
           // create user entry in the database
           const userInfo = {
             name: data.name,
@@ -45,6 +55,18 @@ const SignUp = () => {
               navigate("/");
             }
           });
+=======
+          console.log("user profile info updated");
+          reset();
+          Swal.fire({
+            position: "top-center",
+            icon: "success",
+            title: "User created successfully.",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          navigate("/");
+>>>>>>> 40a0ed2a1c8126e2dda488b513ffd2d279b8a177
         })
         .catch((error) => console.log(error));
     });
@@ -168,8 +190,11 @@ const SignUp = () => {
                   </Link>
                 </p>
               </form>
+<<<<<<< HEAD
               <hr />
               <SocialLogin/>
+=======
+>>>>>>> 40a0ed2a1c8126e2dda488b513ffd2d279b8a177
             </div>
           </div>
         </div>
