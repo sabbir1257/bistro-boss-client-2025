@@ -93,11 +93,7 @@ const NavBar = () => {
             {/* Conditional rendering for user */}
             <li>
               {user ? (
-<<<<<<< HEAD
                 <div className="items-center gap-3 text-center md:flex">
-=======
-                <div className="flex items-center gap-3 text-center">
->>>>>>> 40a0ed2a1c8126e2dda488b513ffd2d279b8a177
                   <NavLink to="/dashboard/cart">
                     <button className="relative inline-flex items-center p-3 text-sm font-medium text-center text-white bg-[#B58130] rounded-lg hover:bg-[#A57328] ">
                       <IoCartSharp className="w-5 h-5" />
@@ -110,11 +106,7 @@ const NavBar = () => {
 
                   <button
                     onClick={handleLogOut}
-<<<<<<< HEAD
                     className="text-white bg-gray-800 hover:bg-[#D99904] rounded-lg text-sm px-5 py-2.5 me-2 mb-2"
-=======
-                    className="text-white bg-gray-800 hover:bg-[#D99904] rounded-lg text-sm px-5 py-2.5"
->>>>>>> 40a0ed2a1c8126e2dda488b513ffd2d279b8a177
                   >
                     LogOut
                   </button>

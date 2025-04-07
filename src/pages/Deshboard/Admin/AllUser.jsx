@@ -1,7 +1,7 @@
 import React from "react";
-import { FaUsers } from "react-icons/fa";
+import { FaUser, FaUsers } from "react-icons/fa";
 import SectionTitle from "../../../components/SectionTitle";
-import {  MdDeleteOutline } from "react-icons/md";
+import { MdDeleteOutline } from "react-icons/md";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../HOOKS/useAxiosSecure";
 import Swal from "sweetalert2";
@@ -17,34 +17,33 @@ const AllUsers = () => {
     },
   });
 
-  const handleMakeAdmin = user => {
-    
-  }
+  const handleMakeAdmin = (user) => {
+    // Handle make admin functionality here
+  };
 
   const handleDeleteUser = (user) => {
-     Swal.fire({
-          title: "Are you sure?",
-          text: "You won't be able to revert this!",
-          icon: "warning",
-          showCancelButton: true,
-          confirmButtonColor: "#3085d6",
-          cancelButtonColor: "#d33",
-          confirmButtonText: "Yes, delete it!",
-        }).then((result) => {
-          if (result.isConfirmed) {
-            axiosSecure.delete(`/users/${user._id}`)
-            .then((res) => {
-              if (res.data.deletedCount > 0) {
-                refetch();
-                Swal.fire({
-                  title: "Deleted!",
-                  text: "Your file has been deleted.",
-                  icon: "success",
-                });
-              }
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosSecure.delete(`/users/${user._id}`).then((res) => {
+          if (res.data.deletedCount > 0) {
+            refetch();
+            Swal.fire({
+              title: "Deleted!",
+              text: "Your file has been deleted.",
+              icon: "success",
             });
           }
         });
+      }
+    });
   };
 
   return (
@@ -55,7 +54,7 @@ const AllUsers = () => {
         <table className="min-w-full table-auto">
           <thead className="bg-[#D1A054]">
             <tr className="text-center ">
-              <th className="px-4 py-2 text-left">#</th>
+              <th className="px-4 py-2 text-left"></th>
               <th className="px-4 py-2 text-left">NAME</th>
               <th className="px-4 py-2 text-left">EMAIL</th>
               <th className="px-4 py-2 text-left">ROLE</th>
@@ -63,23 +62,27 @@ const AllUsers = () => {
             </tr>
           </thead>
           <tbody>
-            {users.map((item, index) => (
+            {users.map((user, index) => (
               <tr key={index} className="border-t">
                 <td className="px-4 py-2">{index + 1}</td>
-                <td className="px-4 py-2">{item.name}</td>
-                <td className="px-4 py-2">{item.email}</td>
+                <td className="px-4 py-2">{user.name}</td>
+                <td className="px-4 py-2">{user.email}</td>
                 <td className="px-4 py-2 text-center">
-                  <button
-                    onClick={() => handleMakeAdmin(item._id)}
-                    className="p-2 text-2xl font-medium "
-                  >
-                    <FaUsers  />
-                  </button>
+                  {user.role === "admin" ? (
+                    <FaUser />
+                  ) : (
+                    <button
+                      onClick={() => handleMakeAdmin(user._id)}
+                      className="p-2 text-2xl font-medium"
+                    >
+                      <FaUsers />
+                    </button>
+                  )}
                 </td>
-                <td className="px-4 py-2 text-center">
+                <td className="flex items-center justify-center gap-4 px-4 py-2 text-center">
                   <button
-                    onClick={() => handleDeleteUser(item._id)}
-                    className="p-2 text-2xl font-medium text-white bg-red-600 rounded-md "
+                    onClick={() => handleDeleteUser(user._id)}
+                    className="p-2 text-2xl font-medium text-white bg-red-600 rounded-md"
                   >
                     <MdDeleteOutline />
                   </button>

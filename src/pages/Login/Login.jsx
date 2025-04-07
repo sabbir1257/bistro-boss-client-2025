@@ -8,12 +8,8 @@ import {
 import { AuthContext } from "../../providers/AuthProvider";
 import { Helmet } from "react-helmet-async";
 import Swal from "sweetalert2";
-<<<<<<< HEAD
 import img from "../../assets/others/authentication2.png";
 import SocialLogin from "../../components/SocialLogin/SocialLogin";
-=======
-import img from '../../assets/others/authentication2.png'
->>>>>>> 40a0ed2a1c8126e2dda488b513ffd2d279b8a177
 
 const Login = () => {
   const [disabled, setDisabled] = useState(true);
@@ -73,11 +69,7 @@ const Login = () => {
         <title>Bistro Boss | LogIn</title>
       </Helmet>
       <section className="grid items-center md:grid-cols-2 bg-gray-50 dark:bg-gray-900">
-<<<<<<< HEAD
         <img src={img} alt="" />
-=======
-      <img  src={img} alt="" />
->>>>>>> 40a0ed2a1c8126e2dda488b513ffd2d279b8a177
         <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
           <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
             <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
@@ -156,12 +148,9 @@ const Login = () => {
                   </Link>
                 </p>
               </form>
-<<<<<<< HEAD
               {/* Social Login section */}
               <hr />
               <SocialLogin />
-=======
->>>>>>> 40a0ed2a1c8126e2dda488b513ffd2d279b8a177
             </div>
           </div>
         </div>
