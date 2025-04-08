@@ -16,9 +16,21 @@ const AllUsers = () => {
       return res.data;
     },
   });
-
   const handleMakeAdmin = (user) => {
-    // Handle make admin functionality here
+    // Handle make admin functionality her
+    axiosSecure.patch(`users/admin/${user._id}`).then((res) => {
+      console.log(res.data);
+      if (res.data.modifiedCount > 0) {
+        refetch();
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: `${user.name} is an Admin`,
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
+    });
   };
 
   const handleDeleteUser = (user) => {
@@ -47,7 +59,7 @@ const AllUsers = () => {
   };
 
   return (
-    <div className="container p-4 mx-auto">
+    <div className="container p-4 mx-auto z-999">
       <SectionTitle subHeading="---How many??---" heading="MANAGE ALL USERS" />
       <h2 className="mb-4 text-xl font-medium">Total Users : {users.length}</h2>
       <div className="overflow-x-auto bg-white rounded-lg shadow-md">
@@ -62,18 +74,20 @@ const AllUsers = () => {
             </tr>
           </thead>
           <tbody>
-            {users.map((user, index) => (
+            {users?.map((user, index) => (
               <tr key={index} className="border-t">
                 <td className="px-4 py-2">{index + 1}</td>
                 <td className="px-4 py-2">{user.name}</td>
                 <td className="px-4 py-2">{user.email}</td>
                 <td className="px-4 py-2 text-center">
                   {user.role === "admin" ? (
-                    <FaUser />
+                    <button className="font-medium ">
+                      <FaUser />
+                    </button>
                   ) : (
                     <button
-                      onClick={() => handleMakeAdmin(user._id)}
-                      className="p-2 text-2xl font-medium"
+                      onClick={() => handleMakeAdmin(user)}
+                      className="text-2xl font-medium "
                     >
                       <FaUsers />
                     </button>
@@ -81,8 +95,8 @@ const AllUsers = () => {
                 </td>
                 <td className="flex items-center justify-center gap-4 px-4 py-2 text-center">
                   <button
-                    onClick={() => handleDeleteUser(user._id)}
-                    className="p-2 text-2xl font-medium text-white bg-red-600 rounded-md"
+                    onClick={() => handleDeleteUser(user)}
+                    className="p-2 text-2xl font-medium text-white bg-red-600 rounded-md cursor-pointer hover:bg-red-800"
                   >
                     <MdDeleteOutline />
                   </button>
